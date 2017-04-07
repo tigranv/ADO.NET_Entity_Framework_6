@@ -18,8 +18,10 @@ namespace FirstEntityFreamworkApp
 
             foreach (Table item in list)
             {
-
+                Console.WriteLine($"{item.Id} - {item.FirstName} {item.LastName} {item.Age}");
             }
+
+            Console.ReadKey();
         }
     }
 }
