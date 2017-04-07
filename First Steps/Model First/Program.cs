@@ -10,6 +10,11 @@ namespace Model_First
     {
         static void Main(string[] args)
         {
+            using (MyModel1Container container = new MyModel1Container())
+            {
+
+
+            }
         }
     }
 }
