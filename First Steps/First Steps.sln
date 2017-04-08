@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstEntityFreamworkApp", "FirstEntityFreamworkApp\FirstEntityFreamworkApp.csproj", "{B39DFE32-D8E9-49E6-90C7-A9A2A9BEAEF1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBase First", "FirstEntityFreamworkApp\DataBase First.csproj", "{B39DFE32-D8E9-49E6-90C7-A9A2A9BEAEF1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model First", "Model First\Model First.csproj", "{60B5744B-4B37-43F7-84C9-7BEABF4AF72A}"
 EndProject
