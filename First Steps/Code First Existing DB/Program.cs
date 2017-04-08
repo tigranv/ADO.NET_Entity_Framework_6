@@ -10,6 +10,17 @@ namespace Code_First_Existing_DB
     {
         static void Main(string[] args)
         {
+            using (ModelCFEDB container = new ModelCFEDB())
+            {
+                var list = container.PersonalInfoes.ToList();
+
+                foreach (var item in list)
+                {
+                    Console.WriteLine($"{item.Id} - {item.FirstName} {item.LastName} {item.Age}");
+                }
+            }
+
+            Console.ReadKey();
         }
     }
 }
