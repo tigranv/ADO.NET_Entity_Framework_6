@@ -10,6 +10,16 @@ namespace Code_First
     {
         static void Main(string[] args)
         {
+            MOdelCF contex = new MOdelCF();
+
+            contex
+
+            var list = contex.PersonalInfos.ToList();
+
+            foreach (var item in list)
+            {
+                Console.WriteLine($"{item.Id}, {item.FirstName}");
+            }
         }
     }
 }
