@@ -12,7 +12,8 @@ namespace Code_First
         {
             MOdelCF contex = new MOdelCF();
 
-            contex
+            contex.PersonalInfos.Add(new PersonalInfo { FirstName = "Leon", LastName = "Vardanyan", Age = 2 });
+            contex.SaveChanges();
 
             var list = contex.PersonalInfos.ToList();
 
@@ -20,6 +21,8 @@ namespace Code_First
             {
                 Console.WriteLine($"{item.Id}, {item.FirstName}");
             }
+
+            Console.ReadKey();
         }
     }
 }
