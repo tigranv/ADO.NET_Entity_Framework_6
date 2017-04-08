@@ -8,6 +8,7 @@ namespace Model_First
 {
     class Program
     {
+        // example on Model First in EF
         static void Main(string[] args)
         {
             using (MyModel1Container container = new MyModel1Container())
