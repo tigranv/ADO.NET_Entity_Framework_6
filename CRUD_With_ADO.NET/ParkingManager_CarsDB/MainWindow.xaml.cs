@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,13 +21,18 @@ namespace ParkingManager_CarsDB
     /// </summary>
     public partial class MainWindow : Window
     {
+        ParkingManipulator Park;
         public MainWindow()
         {
             InitializeComponent();
+            Park = new ParkingManipulator();
         }
 
         private void Get_All_CarsBt_Click(object sender, RoutedEventArgs e)
         {
+            MyGrid.ItemsSource = null;
+            List<Car> carList = Park.GetAllCars();
+            MyGrid.ItemsSource = carList;
 
         }
 
