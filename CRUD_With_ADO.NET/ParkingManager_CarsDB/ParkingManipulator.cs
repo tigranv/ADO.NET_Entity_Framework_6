@@ -46,10 +46,43 @@ namespace ParkingManager_CarsDB
             return cars;
         }
 
-        //public Car GetCarById(int id)
-        //{
+        public Car GetCarById(int id)
+        {
+            Car car = null;
+            SqlDataReader reader = null;
 
-        //}
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("SELECT * FROM Cars where Id = @id", connection);
+                command.Parameters.AddWithValue("id", id);
+
+                try
+                {
+                    reader = command.ExecuteReader();
+                    reader.Read();
+                    car = new Car()
+                    {
+                        ID = (int)reader[0],
+                        Mark = reader[1].ToString(),
+                        Model = reader[2].ToString(),
+                        Year = (int)reader[3]
+                    };
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
+                finally
+                {
+                    if (reader != null)
+                    {
+                        reader.Close();
+                    }
+                }
+                return car;
+            }
+        }
 
         public void Update(int id, string mark, string model, int year)
         {

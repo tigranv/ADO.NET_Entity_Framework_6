@@ -22,23 +22,33 @@ namespace ParkingManager_CarsDB
     public partial class MainWindow : Window
     {
         ParkingManipulator Park;
+        List<Car> carList;
         public MainWindow()
         {
             InitializeComponent();
             Park = new ParkingManipulator();
+            carList = new List<Car>();
         }
 
         private void Get_All_CarsBt_Click(object sender, RoutedEventArgs e)
         {
             MyGrid.ItemsSource = null;
-            List<Car> carList = Park.GetAllCars();
+            carList = Park.GetAllCars();
             MyGrid.ItemsSource = carList;
 
         }
 
         private void Get_By_IdBt_Click(object sender, RoutedEventArgs e)
         {
-
+            string text = GetIDTxBox.Text;
+            if(!string.IsNullOrEmpty(text) && text.All(char.IsDigit))
+            {
+                Car car = Park.GetCarById(int.Parse(text));
+                MyGrid.ItemsSource = null;
+                carList.Clear();
+                carList.Add(car);
+                MyGrid.ItemsSource = carList;
+            }
         }
 
         private void AddNewBt_Click(object sender, RoutedEventArgs e)
