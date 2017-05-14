@@ -1,4 +1,5 @@
-# ADO.NET and Entity Framework 6 ![entity_image](https://cloud.githubusercontent.com/assets/24522089/26033394/75980d7a-38bc-11e7-9ebd-f4c460afbfcf.png)
+# ADO.NET and Entity Framework 6  <img src="https://cloud.githubusercontent.com/assets/24522089/26033394/75980d7a-38bc-11e7-9ebd-f4c460afbfcf.png" align="right" width="150px" height="150px" /> 
+
 
 ## ADO.NET Overview
 
