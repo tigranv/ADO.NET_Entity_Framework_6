@@ -7,7 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid Margin="3" Name="gridMain">
-        
+        <Grid.Background>
+            <ImageBrush ImageSource="C:\Users\Tigran PC\Source\Repos\Useful_Examples_Entity_Framework_6\CRUD_With_ADO.NET\1.jpg"/>
+        </Grid.Background>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
             <RowDefinition Height="auto" />
@@ -37,9 +40,11 @@
         <StackPanel Margin="2"  Grid.Row="3" Orientation="Horizontal">
             <Button Name="AddNewBt" Margin="5, 3, 10, 3" Padding="2" Click="AddNewBt_Click" >Add New Car</Button>
             <Button Name="UpdateBt" Margin="5, 3, 10, 3" Padding="2" Click="UpdateBt_Click" >Update Car</Button>
+            <Button Name="DeleteBt" Margin="5, 3, 10, 3" Padding="2" Click="DeleteBt_Click">Delete Selected Car</Button>
+            <Button Name="carBt" Margin="5, 3, 10, 3" Padding="2" Click="carBt_Click" >Car</Button>
         </StackPanel>
 
-        <DataGrid Name="MyGrid" Height="150" Grid.Row="4" Margin="5"></DataGrid>
+        <DataGrid Background="Transparent" Name="MyGrid"  Height="150" Grid.Row="4" Margin="5"></DataGrid>
 
 
     </Grid>

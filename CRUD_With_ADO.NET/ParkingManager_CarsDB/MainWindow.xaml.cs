@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace ParkingManager_CarsDB
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         ParkingManipulator Park;
@@ -44,21 +42,60 @@ namespace ParkingManager_CarsDB
             if(!string.IsNullOrEmpty(text) && text.All(char.IsDigit))
             {
                 Car car = Park.GetCarById(int.Parse(text));
-                MyGrid.ItemsSource = null;
-                carList.Clear();
-                carList.Add(car);
-                MyGrid.ItemsSource = carList;
+                if(car != null)
+                {
+                    MyGrid.ItemsSource = null;
+                    carList.Clear();
+                    carList.Add(car);
+                    MyGrid.ItemsSource = carList;
+                }
+                else
+                {
+                    MessageBox.Show($"No car with Id {text}");
+                }
+                
             }
         }
 
         private void AddNewBt_Click(object sender, RoutedEventArgs e)
         {
-
+            Car car = new Car(MarkTxBox.Text, modeltxtBox.Text, int.Parse(YeartxBox.Text));
+            Park.CreateNew(car);
+            MessageBox.Show($"New Car created");
+            MyGrid.ItemsSource = null;
+            carList = Park.GetAllCars();
+            MyGrid.ItemsSource = carList;
         }
 
         private void UpdateBt_Click(object sender, RoutedEventArgs e)
         {
+            Car car = new Car(carList[MyGrid.SelectedIndex].ID, MarkTxBox.Text,  modeltxtBox.Text, int.Parse(YeartxBox.Text));
+            Park.Update(car);
+            MessageBox.Show($"Car with id-{carList[MyGrid.SelectedIndex].ID} updated");
+            MyGrid.ItemsSource = null;
+            carList = Park.GetAllCars();
+            MyGrid.ItemsSource = carList;
+        }
 
+        private void DeleteBt_Click(object sender, RoutedEventArgs e)
+        {
+            if(MyGrid.SelectedItem != null)
+            {
+                Park.Delete(carList[MyGrid.SelectedIndex].ID);
+                MyGrid.ItemsSource = null;
+                carList = Park.GetAllCars();
+                MyGrid.ItemsSource = carList;
+            }
+            else
+            {
+                MessageBox.Show($"No car with Id {carList[MyGrid.SelectedIndex].ID}");
+            }
+
+        }
+
+        private void carBt_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

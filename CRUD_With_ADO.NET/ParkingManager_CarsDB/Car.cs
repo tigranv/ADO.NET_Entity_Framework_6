@@ -15,5 +15,12 @@
             Model = model;
             Year = year;
         }
+
+        public Car(string mark, string model, int year)
+        {
+            Mark = mark;
+            Model = model;
+            Year = year;
+        }
     }
 }

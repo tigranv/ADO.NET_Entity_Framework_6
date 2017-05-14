@@ -84,19 +84,43 @@ namespace ParkingManager_CarsDB
             }
         }
 
-        public void Update(int id, string mark, string model, int year)
+        public void Update(Car car)
         {
-
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            {
+                SqlCommand command = new SqlCommand("UPDATE Cars SET Mark=@Mark, Model=@Model, Year=@Year WHERE ID=@id", connection);
+                command.Parameters.AddWithValue("id", car.ID);
+                command.Parameters.AddWithValue("Mark", car.Mark);
+                command.Parameters.AddWithValue("Model", car.Model);
+                command.Parameters.AddWithValue("Year", car.Year);
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
         }
 
-        public void CreateNew(string mark, string model, int year)
+        public void CreateNew(Car car)
         {
-
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            {
+                SqlCommand command = new SqlCommand("INSERT INTO Cars VALUES (@Mark, @Model, @Year)", connection);
+                command.Parameters.AddWithValue("Mark", car.Mark);
+                command.Parameters.AddWithValue("Model", car.Model);
+                command.Parameters.AddWithValue("Year", car.Year);
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
         }
 
         public void Delete(int id)
         {
-
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            {
+                SqlCommand command = new SqlCommand("DELETE FROM Cars WHERE ID = @id", connection);
+                command.Parameters.AddWithValue("id", id);
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
         }
+
     }
 }
