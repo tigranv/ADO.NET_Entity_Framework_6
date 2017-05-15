@@ -39,11 +39,23 @@ namespace ConsoleConnectionToDB
 
                     reader.Close();
 
-                    command.CommandText = "INSERT INTO table_name (FName, LName) VALUES(value1, value2)";
+                    command.CommandText = "INSERT INTO Students (FName, LName) VALUES('value1', 'value2')";
 
                     command.ExecuteNonQuery();
 
                     transaction.Commit();
+
+                    //command.CommandText = $"SELECT * FROM Students";
+
+                    //reader = command.ExecuteReaderAsync().Result;
+
+                    //while (reader.Read())
+                    //{
+                    //    Console.WriteLine($"{ reader.GetString(1)} {reader.GetString(2)}");
+                    //}
+
+                    //reader.Close();
+
                 }
                 catch (Exception ex)
                 {
