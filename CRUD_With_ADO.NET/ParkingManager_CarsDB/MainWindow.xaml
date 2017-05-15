@@ -41,7 +41,6 @@
             <Button Name="AddNewBt" Margin="5, 3, 10, 3" Padding="2" Click="AddNewBt_Click" >Add New Car</Button>
             <Button Name="UpdateBt" Margin="5, 3, 10, 3" Padding="2" Click="UpdateBt_Click" >Update Car</Button>
             <Button Name="DeleteBt" Margin="5, 3, 10, 3" Padding="2" Click="DeleteBt_Click">Delete Selected Car</Button>
-            <Button Name="carBt" Margin="5, 3, 10, 3" Padding="2" Click="carBt_Click" >Car</Button>
         </StackPanel>
 
         <DataGrid Background="Transparent" Name="MyGrid"  Height="150" Grid.Row="4" Margin="5"></DataGrid>

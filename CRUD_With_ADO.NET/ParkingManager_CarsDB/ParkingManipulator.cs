@@ -15,7 +15,12 @@ namespace ParkingManager_CarsDB
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
             {
                 connection.Open();
+
                 SqlCommand command = new SqlCommand("SELECT * FROM Cars", connection);
+
+                SqlTransaction transaction = connection.BeginTransaction();
+
+                command.Transaction = transaction;
                 try
                 {
                     reader = command.ExecuteReader();
@@ -30,9 +35,12 @@ namespace ParkingManager_CarsDB
                         };
                         cars.Add(car);
                     }
+
+                    //transaction.Commit();
                 }
                 catch (Exception ex)
                 {
+                    //transaction.Rollback();
                     MessageBox.Show(ex.Message);
                 }
                 finally
@@ -54,6 +62,11 @@ namespace ParkingManager_CarsDB
                 SqlCommand command = new SqlCommand("SELECT * FROM Cars where Id = @id", connection);
                 command.Parameters.AddWithValue("id", id);
 
+
+                SqlTransaction transaction = connection.BeginTransaction();
+
+                command.Transaction = transaction;
+
                 try
                 {
                     reader = command.ExecuteReader();
@@ -65,9 +78,13 @@ namespace ParkingManager_CarsDB
                         Model = reader[2].ToString(),
                         Year = (int)reader[3]
                     };
+
+                    //transaction.Commit();
+
                 }
                 catch (Exception e)
                 {
+                    //transaction.Rollback();
                     MessageBox.Show(e.Message);
                 }
                 finally

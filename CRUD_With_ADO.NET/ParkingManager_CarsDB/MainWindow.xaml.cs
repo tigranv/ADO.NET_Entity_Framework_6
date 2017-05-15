@@ -79,10 +79,6 @@ namespace ParkingManager_CarsDB
             }
 
         }
-
-        private void carBt_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
+        
     }
 }
