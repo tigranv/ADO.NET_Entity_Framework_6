@@ -14,8 +14,12 @@ The Entity Framework is a set of technologies in ADO.NET that support the develo
 
 
 ### Simple CRUD Projects in ADO.NET
+
 [Parking Manipulyator](https://github.com/tigranv/ADO.NET_Entity_Framework_6/tree/master/CRUD_With_ADO.NET)
+
 ![parkingcrud](https://cloud.githubusercontent.com/assets/24522089/26033513/0f7e2166-38bf-11e7-80d1-3d996df61bfb.gif)
+
 [BookStore(data binding)](https://github.com/tigranv/WPF_XAML_WCF_Useful-Examples)
+
 ![Bookstor](https://cloud.githubusercontent.com/assets/24522089/24990952/93b8a5dc-2028-11e7-9058-059e46893b4c.gif)
 
