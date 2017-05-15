@@ -21,5 +21,5 @@ The Entity Framework is a set of technologies in ADO.NET that support the develo
 
 [BookStore(data binding)](https://github.com/tigranv/WPF_XAML_WCF_Useful-Examples)
 
-![Bookstor](https://cloud.githubusercontent.com/assets/24522089/24990952/93b8a5dc-2028-11e7-9058-059e46893b4c.gif)
+![Bookstor](https://cloud.githubusercontent.com/assets/24522089/24979969/4a50735c-1fe7-11e7-9d2e-c26cc72f0825.gif)
 
