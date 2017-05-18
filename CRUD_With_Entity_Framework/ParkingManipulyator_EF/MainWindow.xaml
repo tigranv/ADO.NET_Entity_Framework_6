@@ -6,7 +6,41 @@
         xmlns:local="clr-namespace:ParkingManipulyator_EF"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+    <Grid Margin="3" Name="gridMain">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Margin="2"  Grid.Row="0" Orientation="Horizontal">
+            <Button Name="Get_All_CarsBt" Margin="5, 3, 10, 3" Padding="2" Click="Get_All_CarsBt_Click" >Get All Cars</Button>
+            <Button Name="Get_By_IdBt" Margin="5, 3, 10, 3" Padding="2" Click="Get_By_IdBt_Click" >Get Car By Id</Button>
+            <TextBox Name="GetIDTxBox" Margin="5, 3, 10, 3" Padding="2" Width="50" VerticalAlignment="Center" >ID</TextBox>
+        </StackPanel>
+
+        <ListBox Name="listOfCars" 
+                 Grid.Row="1"
+                 Height="auto" 
+                 Margin="5">
+        </ListBox>
+
+        <StackPanel Margin="2"  Grid.Row="2" Orientation="Horizontal">
+            <TextBox  Name="MarkTxBox" Margin="5, 3, 10, 3" Padding="2" Width="170" VerticalAlignment="Center" >Mark</TextBox>
+            <TextBox Name="modeltxtBox" Margin="5, 3, 10, 3" Padding="2" Width="170" VerticalAlignment="Center" >Model</TextBox>
+            <TextBox Name="YeartxBox" Margin="5, 3, 10, 3" Padding="2" Width="50" VerticalAlignment="Center" >Year</TextBox>
+        </StackPanel>
+
+        <StackPanel Margin="2"  Grid.Row="3" Orientation="Horizontal">
+            <Button Name="AddNewBt" Margin="5, 3, 10, 3" Padding="2" Click="AddNewBt_Click" >Add New Car</Button>
+            <Button Name="UpdateBt" Margin="5, 3, 10, 3" Padding="2" Click="UpdateBt_Click" >Update Car</Button>
+            <Button Name="DeleteBt" Margin="5, 3, 10, 3" Padding="2" Click="DeleteBt_Click">Delete Selected Car</Button>
+        </StackPanel>
+
+        <DataGrid Background="Transparent" Name="MyGrid"  Height="150" Grid.Row="4" Margin="5"></DataGrid>
+
+
     </Grid>
 </Window>
