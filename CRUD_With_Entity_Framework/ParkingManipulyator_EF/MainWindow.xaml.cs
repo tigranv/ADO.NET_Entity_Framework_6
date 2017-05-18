@@ -94,6 +94,8 @@ namespace ParkingManipulyator_EF
 
         private void DeleteBt_Click(object sender, RoutedEventArgs e)
         {
+            if (MyGrid.SelectedItems.Count != 1) return;
+
             var id = carList[MyGrid.SelectedIndex].Id;
             var car = Park.Cars.Find(id);
 
