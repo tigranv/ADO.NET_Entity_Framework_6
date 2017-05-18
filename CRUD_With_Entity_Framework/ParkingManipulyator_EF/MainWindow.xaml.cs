@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -52,39 +53,53 @@ namespace ParkingManipulyator_EF
             }
         }
 
-        private void AddNewBt_Click(object sender, RoutedEventArgs e)
+        private async void AddNewBt_Click(object sender, RoutedEventArgs e)
         {
-            //Car car = new Car(MarkTxBox.Text, modeltxtBox.Text, int.Parse(YeartxBox.Text));
-            //Park.CreateNew(car);
-            //MessageBox.Show($"New Car created");
-            //MyGrid.ItemsSource = null;
-            //carList = Park.GetAllCars();
-            //MyGrid.ItemsSource = carList;
+            Park.Cars.Add(new Car {
+                Mark = MarkTxBox.Text,
+                Model = modeltxtBox.Text,
+                year = int.Parse(YeartxBox.Text)
+            });
+
+            try
+            {
+                await Park.SaveChangesAsync();
+                MessageBox.Show($"New Car created");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            MyGrid.ItemsSource = null;
+            carList = await Park.Cars.ToListAsync();
+            MyGrid.ItemsSource = carList;
         }
 
         private void UpdateBt_Click(object sender, RoutedEventArgs e)
         {
-            //Car car = new Car(carList[MyGrid.SelectedIndex].ID, MarkTxBox.Text, modeltxtBox.Text, int.Parse(YeartxBox.Text));
-            //Park.Update(car);
-            //MessageBox.Show($"Car with id-{carList[MyGrid.SelectedIndex].ID} updated");
-            //MyGrid.ItemsSource = null;
-            //carList = Park.GetAllCars();
-            //MyGrid.ItemsSource = carList;
+            var id = carList[MyGrid.SelectedIndex].Id;
+            var car = Park.Cars.Find(id);
+
+            if (car == null) return;
+
+            car.Mark = MarkTxBox.Text;
+            car.Model = modeltxtBox.Text;
+            car.year = int.Parse(YeartxBox.Text);
+
+            //Park.Entry(car).State = EntityState.Modified; 2 ways to update data
+            Park.Cars.AddOrUpdate(car);
+            Park.SaveChanges();
         }
 
         private void DeleteBt_Click(object sender, RoutedEventArgs e)
         {
-            //if (MyGrid.SelectedItem != null)
-            //{
-            //    Park.Delete(carList[MyGrid.SelectedIndex].ID);
-            //    MyGrid.ItemsSource = null;
-            //    carList = Park.GetAllCars();
-            //    MyGrid.ItemsSource = carList;
-            //}
-            //else
-            //{
-            //    MessageBox.Show($"No car with Id {carList[MyGrid.SelectedIndex].ID}");
-            //}
+            var id = carList[MyGrid.SelectedIndex].Id;
+            var car = Park.Cars.Find(id);
+
+            //Park.Entry(car).State = EntityState.Deleted; 2 ways to delete
+            Park.Cars.Remove(car);
+
+            Park.SaveChanges();
 
         }
     }
