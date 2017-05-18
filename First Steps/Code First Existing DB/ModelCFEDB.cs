@@ -13,7 +13,6 @@ namespace Code_First_Existing_DB
         }
 
         public virtual DbSet<PersonalInfo> PersonalInfoes { get; set; }
-
-       
+     
     }
 }
