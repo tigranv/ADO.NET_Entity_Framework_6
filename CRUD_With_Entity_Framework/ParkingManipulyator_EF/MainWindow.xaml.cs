@@ -19,7 +19,7 @@ using System.Windows.Shapes;
 namespace ParkingManipulyator_EF
 {
     /// <summary>
-    /// TODO: need to add try catch to all methods
+    /// TODO: need to add try catch to all methods, change methods to async
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -32,11 +32,9 @@ namespace ParkingManipulyator_EF
             carList = new List<Car>();
         }
 
-        private async void  Get_All_CarsBt_Click(object sender, RoutedEventArgs e)
+        private void  Get_All_CarsBt_Click(object sender, RoutedEventArgs e)
         {
-            MyGrid.ItemsSource = null;
-            carList = await Park.Cars.ToListAsync();            
-            MyGrid.ItemsSource = carList;
+            RefreshCarsList();
         }
 
         private async void Get_By_IdBt_Click(object sender, RoutedEventArgs e)
@@ -70,13 +68,14 @@ namespace ParkingManipulyator_EF
             {
                 MessageBox.Show(ex.Message);
             }
-            MyGrid.ItemsSource = null;
-            carList = await Park.Cars.ToListAsync();
-            MyGrid.ItemsSource = carList;
+
+            RefreshCarsList();
         }
 
         private void UpdateBt_Click(object sender, RoutedEventArgs e)
         {
+            if (MyGrid.SelectedItems.Count != 1) return;
+
             var id = carList[MyGrid.SelectedIndex].Id;
             var car = Park.Cars.Find(id);
 
@@ -89,6 +88,8 @@ namespace ParkingManipulyator_EF
             //Park.Entry(car).State = EntityState.Modified; 2 ways to update data
             Park.Cars.AddOrUpdate(car);
             Park.SaveChanges();
+            
+            RefreshCarsList();
         }
 
         private void DeleteBt_Click(object sender, RoutedEventArgs e)
@@ -101,6 +102,15 @@ namespace ParkingManipulyator_EF
 
             Park.SaveChanges();
 
+            RefreshCarsList();
+
+        }
+
+        private async void RefreshCarsList()
+        {
+            MyGrid.ItemsSource = null;
+            carList = await Park.Cars.ToListAsync();
+            MyGrid.ItemsSource = carList;
         }
     }
 }
