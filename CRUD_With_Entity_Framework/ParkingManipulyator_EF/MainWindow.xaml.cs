@@ -18,7 +18,7 @@ using System.Windows.Shapes;
 namespace ParkingManipulyator_EF
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// TODO: need to add try catch to all methods
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -38,25 +38,18 @@ namespace ParkingManipulyator_EF
             MyGrid.ItemsSource = carList;
         }
 
-        private void Get_By_IdBt_Click(object sender, RoutedEventArgs e)
+        private async void Get_By_IdBt_Click(object sender, RoutedEventArgs e)
         {
-            //string text = GetIDTxBox.Text;
-            //if (!string.IsNullOrEmpty(text) && text.All(char.IsDigit))
-            //{
-            //    Car car = Park.GetCarById(int.Parse(text));
-            //    if (car != null)
-            //    {
-            //        MyGrid.ItemsSource = null;
-            //        carList.Clear();
-            //        carList.Add(car);
-            //        MyGrid.ItemsSource = carList;
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show($"No car with Id {text}");
-            //    }
-
-            //}
+            string text = GetIDTxBox.Text;
+            if (!string.IsNullOrEmpty(text) && text.All(char.IsDigit))
+            {
+                int id = int.Parse(text);
+                carList = null;
+                carList = await Park.Cars.Where(p => p.Id == id).ToListAsync();
+                MyGrid.ItemsSource = carList;
+                if (carList.Count == 0)
+                MessageBox.Show($"No car with Id {text}");
+            }
         }
 
         private void AddNewBt_Click(object sender, RoutedEventArgs e)
