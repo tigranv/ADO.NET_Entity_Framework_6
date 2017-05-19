@@ -26,3 +26,6 @@ The Entity Framework is a set of technologies in ADO.NET that support the develo
 
 ![Bookstor](https://cloud.githubusercontent.com/assets/24522089/24979969/4a50735c-1fe7-11e7-9d2e-c26cc72f0825.gif)
 
+<br/>
+
+> Projects written on C# 6.0, .NET Framework 4.6 Visual Studio 2015 Comunity Edition
