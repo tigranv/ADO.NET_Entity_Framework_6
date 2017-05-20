@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseClassLibrary", "DatabaseClassLibrary\DatabaseClassLibrary.csproj", "{C886E651-BC49-4E29-9117-92199B38C779}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi_Server", "WebApi_Server\WebApi_Server.csproj", "{B6FB14CC-2DD7-40C8-8199-F5BB327E375B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C886E651-BC49-4E29-9117-92199B38C779}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C886E651-BC49-4E29-9117-92199B38C779}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C886E651-BC49-4E29-9117-92199B38C779}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C886E651-BC49-4E29-9117-92199B38C779}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6FB14CC-2DD7-40C8-8199-F5BB327E375B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6FB14CC-2DD7-40C8-8199-F5BB327E375B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6FB14CC-2DD7-40C8-8199-F5BB327E375B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6FB14CC-2DD7-40C8-8199-F5BB327E375B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
