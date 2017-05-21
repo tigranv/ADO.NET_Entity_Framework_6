@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Tigran PC\Source\Repos\Useful_Examples_Entity_Framework_6\TestingEF\ConsoleCleinttest89\ModelTest89.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Tigran PC\Source\Repos\Useful_Examples_Entity_Framework_6\TestingEF\WebApplicationTest5\ModeltestApiL.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BetC_CRM_DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="BetC_CRM_DatabaseModeltestL.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="EmailListPartners">
           <Key>
             <PropertyRef Name="EmailList_EmailListID" />
@@ -59,7 +59,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="BetC_CRM_DatabaseModelStoreContainer">
+        <EntityContainer Name="BetC_CRM_DatabaseModeltestLStoreContainer">
           <EntitySet Name="EmailListPartners" EntityType="Self.EmailListPartners" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmailLists" EntityType="Self.EmailLists" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Partners" EntityType="Self.Partners" Schema="dbo" store:Type="Tables" />
@@ -76,7 +76,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="BetC_CRM_DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="BetC_CRM_DatabaseModeltestL" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="EmailList">
           <Key>
             <PropertyRef Name="EmailListID" />
@@ -101,7 +101,7 @@
           <End Role="EmailLists" Type="Self.EmailList" Multiplicity="*" />
           <End Role="Partners" Type="Self.Partner" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="BetC_CRM_DatabaseEntitiesTest89" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="BetC_CRM_DatabaseEntitiesAPITest5" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="EmailLists" EntityType="Self.EmailList" />
           <EntitySet Name="Partners" EntityType="Self.Partner" />
           <AssociationSet Name="EmailListPartners" Association="Self.EmailListPartners">
@@ -114,9 +114,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="BetC_CRM_DatabaseModelStoreContainer" CdmEntityContainer="BetC_CRM_DatabaseEntitiesTest89">
+        <EntityContainerMapping StorageEntityContainer="BetC_CRM_DatabaseModeltestLStoreContainer" CdmEntityContainer="BetC_CRM_DatabaseEntitiesAPITest5">
           <EntitySetMapping Name="EmailLists">
-            <EntityTypeMapping TypeName="BetC_CRM_DatabaseModel.EmailList">
+            <EntityTypeMapping TypeName="BetC_CRM_DatabaseModeltestL.EmailList">
               <MappingFragment StoreEntitySet="EmailLists">
                 <ScalarProperty Name="EmailListID" ColumnName="EmailListID" />
                 <ScalarProperty Name="EmailListName" ColumnName="EmailListName" />
@@ -124,7 +124,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Partners">
-            <EntityTypeMapping TypeName="BetC_CRM_DatabaseModel.Partner">
+            <EntityTypeMapping TypeName="BetC_CRM_DatabaseModeltestL.Partner">
               <MappingFragment StoreEntitySet="Partners">
                 <ScalarProperty Name="PartnerID" ColumnName="PartnerID" />
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
@@ -135,7 +135,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="EmailListPartners" TypeName="BetC_CRM_DatabaseModel.EmailListPartners" StoreEntitySet="EmailListPartners">
+          <AssociationSetMapping Name="EmailListPartners" TypeName="BetC_CRM_DatabaseModeltestL.EmailListPartners" StoreEntitySet="EmailListPartners">
             <EndProperty Name="EmailLists">
               <ScalarProperty Name="EmailListID" ColumnName="EmailList_EmailListID" />
             </EndProperty>

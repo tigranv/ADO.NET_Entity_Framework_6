@@ -5,10 +5,6 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestClientCRM", "TestClientCRM\TestClientCRM.csproj", "{03F8A7EF-1B8B-4D8E-A514-CD59F6709740}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplicationCodeFirst", "ConsoleApplicationCodeFirst\ConsoleApplicationCodeFirst.csproj", "{EA955EE0-099D-4F24-9457-5DCE1AACC206}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleCleinttest89", "ConsoleCleinttest89\ConsoleCleinttest89.csproj", "{51555FED-8CA9-4719-B589-6EFBEA84B4B3}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApitest3", "WebApitest3\WebApitest3.csproj", "{053F66D2-C9A4-41BC-822D-8F1CE239E4B0}"
 EndProject
 Global
@@ -21,14 +17,6 @@ Global
 		{03F8A7EF-1B8B-4D8E-A514-CD59F6709740}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03F8A7EF-1B8B-4D8E-A514-CD59F6709740}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03F8A7EF-1B8B-4D8E-A514-CD59F6709740}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EA955EE0-099D-4F24-9457-5DCE1AACC206}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EA955EE0-099D-4F24-9457-5DCE1AACC206}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EA955EE0-099D-4F24-9457-5DCE1AACC206}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EA955EE0-099D-4F24-9457-5DCE1AACC206}.Release|Any CPU.Build.0 = Release|Any CPU
-		{51555FED-8CA9-4719-B589-6EFBEA84B4B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{51555FED-8CA9-4719-B589-6EFBEA84B4B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{51555FED-8CA9-4719-B589-6EFBEA84B4B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{51555FED-8CA9-4719-B589-6EFBEA84B4B3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{053F66D2-C9A4-41BC-822D-8F1CE239E4B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{053F66D2-C9A4-41BC-822D-8F1CE239E4B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{053F66D2-C9A4-41BC-822D-8F1CE239E4B0}.Release|Any CPU.ActiveCfg = Release|Any CPU

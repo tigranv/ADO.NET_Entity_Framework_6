@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ConsoleCleinttest89
+namespace WebApplicationTest5
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class BetC_CRM_DatabaseEntitiesTest89 : DbContext
+    public partial class BetC_CRM_DatabaseEntitiesAPITest5 : DbContext
     {
-        public BetC_CRM_DatabaseEntitiesTest89()
-            : base("name=BetC_CRM_DatabaseEntitiesTest89")
+        public BetC_CRM_DatabaseEntitiesAPITest5()
+            : base("name=BetC_CRM_DatabaseEntitiesAPITest5")
         {
         }
     
