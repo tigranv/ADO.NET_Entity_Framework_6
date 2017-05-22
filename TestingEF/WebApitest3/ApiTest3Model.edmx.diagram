@@ -6,8 +6,9 @@
     <edmx:Diagrams>
       <Diagram DiagramId="ab19c5e7acde4bbca9d316480bd16a38" Name="Diagram1">
         <EntityTypeShape EntityType="BetC_CRM_DatabaseModelTest3.EmailList" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="BetC_CRM_DatabaseModelTest3.Partner" Width="1.5" PointX="4.5" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="BetC_CRM_DatabaseModelTest3.EmailListPartners" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="BetC_CRM_DatabaseModelTest3.Contact" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BetC_CRM_DatabaseModelTest3.Template" Width="1.5" PointX="7.75" PointY="1.125" />
+        <AssociationConnector Association="BetC_CRM_DatabaseModelTest3.EmailListContacts" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

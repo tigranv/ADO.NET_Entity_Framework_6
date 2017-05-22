@@ -18,16 +18,24 @@ namespace WebApitest3.Controllers
         private BetC_CRM_DatabaseEntitiesTest3 db = new BetC_CRM_DatabaseEntitiesTest3();
 
         // GET: api/Partners
-        public IQueryable<Partner> GetPartners()
+        //public List<GetByPage_Result> GetPartners()
+        //{
+        //    //return db.Contacts;
+        //    //return db.Database.SqlQuery<Contact>("exec [dbo].[GetByPage]", 2, 2, 1).ToList();
+        //    return db.GetByPage(2, 2, true).ToList<GetByPage_Result>();
+
+        //}
+
+        public IQueryable<Contact> GetPartners()
         {
-            return db.Partners;
+            return db.Contacts;
         }
 
         // GET: api/Partners/5
-        [ResponseType(typeof(Partner))]
+        [ResponseType(typeof(Contact))]
         public IHttpActionResult GetPartner(int id)
         {
-            Partner partner = db.Partners.Find(id);
+            Contact partner = db.Contacts.Find(id);
             if (partner == null)
             {
                 return NotFound();
@@ -38,15 +46,15 @@ namespace WebApitest3.Controllers
 
         // PUT: api/Partners/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutPartner([FromBody] Partner partner)
+        public IHttpActionResult PutPartner([FromBody] Contact partner)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var id = partner.PartnerID;
-            var PartnerToUpdate = db.Partners.Find(id);
+            var id = partner.ContactId;
+            var PartnerToUpdate = db.Contacts.Find(id);
 
             if (PartnerToUpdate == null)
             {
@@ -82,31 +90,30 @@ namespace WebApitest3.Controllers
         }
 
         // POST: api/Partners
-        [ResponseType(typeof(Partner))]
-        public IHttpActionResult PostPartner(Partner partner)
+        [ResponseType(typeof(Contact))]
+        public IHttpActionResult PostPartner(Contact partner)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            db.Partners.Add(partner);
+            db.Contacts.Add(partner);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = partner.PartnerID }, partner);
+            return CreatedAtRoute("DefaultApi", new { id = partner.ContactId }, partner);
         }
 
         // DELETE: api/Partners/5
-        [ResponseType(typeof(Partner))]
+        [ResponseType(typeof(Contact))]
         public IHttpActionResult DeletePartner(int id)
         {
-            Partner partner = db.Partners.Find(id);
+            Contact partner = db.Contacts.Find(id);
             if (partner == null)
             {
                 return NotFound();
             }
 
-            db.Partners.Remove(partner);
+            db.Contacts.Remove(partner);
             db.SaveChanges();
 
             return Ok(partner);
@@ -123,7 +130,7 @@ namespace WebApitest3.Controllers
 
         private bool PartnerExists(int id)
         {
-            return db.Partners.Count(e => e.PartnerID == id) > 0;
+            return db.Contacts.Count(e => e.ContactId == id) > 0;
         }
     }
 }

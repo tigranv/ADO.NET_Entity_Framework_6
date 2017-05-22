@@ -5,71 +5,86 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="BetC_CRM_DatabaseModelTest3.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="EmailListPartners">
+        <EntityType Name="Contacts">
           <Key>
-            <PropertyRef Name="EmailList_EmailListID" />
-            <PropertyRef Name="Partner_PartnerID" />
+            <PropertyRef Name="ContactId" />
           </Key>
-          <Property Name="EmailList_EmailListID" Type="int" Nullable="false" />
-          <Property Name="Partner_PartnerID" Type="int" Nullable="false" />
+          <Property Name="ContactId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="250" />
+          <Property Name="Position" Type="varchar" MaxLength="250" />
+          <Property Name="Country" Type="varchar" MaxLength="150" />
+          <Property Name="Email" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="GuID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DateInserted" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailListContacts">
+          <Key>
+            <PropertyRef Name="EmailListID" />
+            <PropertyRef Name="ContactID" />
+          </Key>
+          <Property Name="EmailListID" Type="int" Nullable="false" />
+          <Property Name="ContactID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="EmailLists">
           <Key>
             <PropertyRef Name="EmailListID" />
           </Key>
           <Property Name="EmailListID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="EmailListName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="EmailListName" Type="varchar" MaxLength="250" Nullable="false" />
         </EntityType>
-        <EntityType Name="Partners">
+        <EntityType Name="Templates">
           <Key>
-            <PropertyRef Name="PartnerID" />
+            <PropertyRef Name="TemplateId" />
           </Key>
-          <Property Name="PartnerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FullName" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="CompanyName" Type="nvarchar(max)" />
-          <Property Name="Position" Type="nvarchar(max)" />
-          <Property Name="Country" Type="nvarchar(max)" />
-          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="TemplateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TemplateName" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
-        <Association Name="FK_dbo_EmailListPartners_dbo_EmailLists_EmailList_EmailListID">
+        <Association Name="FK_dbo_EmailListContacts_dbo_Contacts_Contact_Id">
+          <End Role="Contacts" Type="Self.Contacts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EmailListContacts" Type="Self.EmailListContacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contacts">
+              <PropertyRef Name="ContactId" />
+            </Principal>
+            <Dependent Role="EmailListContacts">
+              <PropertyRef Name="ContactID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_EmailListContacts_dbo_EmailLists_EmailList_ID">
           <End Role="EmailLists" Type="Self.EmailLists" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="EmailListPartners" Type="Self.EmailListPartners" Multiplicity="*" />
+          <End Role="EmailListContacts" Type="Self.EmailListContacts" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="EmailLists">
               <PropertyRef Name="EmailListID" />
             </Principal>
-            <Dependent Role="EmailListPartners">
-              <PropertyRef Name="EmailList_EmailListID" />
+            <Dependent Role="EmailListContacts">
+              <PropertyRef Name="EmailListID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_EmailListPartners_dbo_Partners_Partner_PartnerID">
-          <End Role="Partners" Type="Self.Partners" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="EmailListPartners" Type="Self.EmailListPartners" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Partners">
-              <PropertyRef Name="PartnerID" />
-            </Principal>
-            <Dependent Role="EmailListPartners">
-              <PropertyRef Name="Partner_PartnerID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <Function Name="GetByPage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="startFrom" Type="int" Mode="In" />
+          <Parameter Name="numberOfRows" Type="int" Mode="In" />
+          <Parameter Name="flag" Type="bit" Mode="In" />
+        </Function>
         <EntityContainer Name="BetC_CRM_DatabaseModelTest3StoreContainer">
-          <EntitySet Name="EmailListPartners" EntityType="Self.EmailListPartners" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contacts" EntityType="Self.Contacts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailListContacts" EntityType="Self.EmailListContacts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmailLists" EntityType="Self.EmailLists" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Partners" EntityType="Self.Partners" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_dbo_EmailListPartners_dbo_EmailLists_EmailList_EmailListID" Association="Self.FK_dbo_EmailListPartners_dbo_EmailLists_EmailList_EmailListID">
-            <End Role="EmailLists" EntitySet="EmailLists" />
-            <End Role="EmailListPartners" EntitySet="EmailListPartners" />
+          <EntitySet Name="Templates" EntityType="Self.Templates" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_EmailListContacts_dbo_Contacts_Contact_Id" Association="Self.FK_dbo_EmailListContacts_dbo_Contacts_Contact_Id">
+            <End Role="Contacts" EntitySet="Contacts" />
+            <End Role="EmailListContacts" EntitySet="EmailListContacts" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_EmailListPartners_dbo_Partners_Partner_PartnerID" Association="Self.FK_dbo_EmailListPartners_dbo_Partners_Partner_PartnerID">
-            <End Role="Partners" EntitySet="Partners" />
-            <End Role="EmailListPartners" EntitySet="EmailListPartners" />
+          <AssociationSet Name="FK_dbo_EmailListContacts_dbo_EmailLists_EmailList_ID" Association="Self.FK_dbo_EmailListContacts_dbo_EmailLists_EmailList_ID">
+            <End Role="EmailLists" EntitySet="EmailLists" />
+            <End Role="EmailListContacts" EntitySet="EmailListContacts" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -81,33 +96,58 @@
             <PropertyRef Name="EmailListID" />
           </Key>
           <Property Name="EmailListID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EmailListName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Partners" Relationship="Self.EmailListPartners" FromRole="EmailLists" ToRole="Partners" />
+          <Property Name="EmailListName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Contacts" Relationship="BetC_CRM_DatabaseModelTest3.EmailListContacts" FromRole="EmailList" ToRole="Contact1" />
         </EntityType>
-        <EntityType Name="Partner">
-          <Key>
-            <PropertyRef Name="PartnerID" />
-          </Key>
-          <Property Name="PartnerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CompanyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Position" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Country" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="EmailLists" Relationship="Self.EmailListPartners" FromRole="Partners" ToRole="EmailLists" />
-        </EntityType>
-        <Association Name="EmailListPartners">
-          <End Role="EmailLists" Type="Self.EmailList" Multiplicity="*" />
-          <End Role="Partners" Type="Self.Partner" Multiplicity="*" />
-        </Association>
         <EntityContainer Name="BetC_CRM_DatabaseEntitiesTest3" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="EmailLists" EntityType="Self.EmailList" />
-          <EntitySet Name="Partners" EntityType="Self.Partner" />
-          <AssociationSet Name="EmailListPartners" Association="Self.EmailListPartners">
-            <End Role="EmailLists" EntitySet="EmailLists" />
-            <End Role="Partners" EntitySet="Partners" />
+          <EntitySet Name="Contacts" EntityType="BetC_CRM_DatabaseModelTest3.Contact" />
+          <EntitySet Name="Templates" EntityType="BetC_CRM_DatabaseModelTest3.Template" />
+          <AssociationSet Name="EmailListContacts" Association="BetC_CRM_DatabaseModelTest3.EmailListContacts">
+            <End Role="Contact1" EntitySet="Contacts" />
+            <End Role="EmailList" EntitySet="EmailLists" />
           </AssociationSet>
+          <FunctionImport Name="GetByPage" ReturnType="Collection(BetC_CRM_DatabaseModelTest3.GetByPage_Result)">
+            <Parameter Name="startFrom" Mode="In" Type="Int32" />
+            <Parameter Name="numberOfRows" Mode="In" Type="Int32" />
+            <Parameter Name="flag" Mode="In" Type="Boolean" />
+          </FunctionImport>
         </EntityContainer>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ContactId" />
+          </Key>
+          <Property Name="ContactId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Position" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="GuID" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="EmailLists" Relationship="BetC_CRM_DatabaseModelTest3.EmailListContacts" FromRole="Contact1" ToRole="EmailList" />
+          <Property Name="DateInserted" Type="DateTime" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Template">
+          <Key>
+            <PropertyRef Name="TemplateId" />
+          </Key>
+          <Property Name="TemplateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TemplateName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="EmailListContacts">
+          <End Type="BetC_CRM_DatabaseModelTest3.Contact" Role="Contact1" Multiplicity="*" />
+          <End Type="BetC_CRM_DatabaseModelTest3.EmailList" Role="EmailList" Multiplicity="*" />
+        </Association>
+        <ComplexType Name="GetByPage_Result">
+          <Property Type="Int32" Name="ContactId" Nullable="false" />
+          <Property Type="String" Name="FullName" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="CompanyName" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Position" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Country" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="250" />
+          <Property Type="Guid" Name="GuID" Nullable="true" />
+          <Property Type="DateTime" Name="DateInserted" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -122,27 +162,51 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Partners">
-            <EntityTypeMapping TypeName="BetC_CRM_DatabaseModelTest3.Partner">
-              <MappingFragment StoreEntitySet="Partners">
-                <ScalarProperty Name="PartnerID" ColumnName="PartnerID" />
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="BetC_CRM_DatabaseModelTest3.Contact">
+              <MappingFragment StoreEntitySet="Contacts">
+                <ScalarProperty Name="DateInserted" ColumnName="DateInserted" />
+                <ScalarProperty Name="GuID" ColumnName="GuID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Templates">
+            <EntityTypeMapping TypeName="BetC_CRM_DatabaseModelTest3.Template">
+              <MappingFragment StoreEntitySet="Templates">
+                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
+                <ScalarProperty Name="TemplateId" ColumnName="TemplateId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="EmailListContacts" TypeName="BetC_CRM_DatabaseModelTest3.EmailListContacts" StoreEntitySet="EmailListContacts">
+            <EndProperty Name="EmailList">
+              <ScalarProperty Name="EmailListID" ColumnName="EmailListID" />
+            </EndProperty>
+            <EndProperty Name="Contact1">
+              <ScalarProperty Name="ContactId" ColumnName="ContactID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="GetByPage" FunctionName="BetC_CRM_DatabaseModelTest3.Store.GetByPage">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BetC_CRM_DatabaseModelTest3.GetByPage_Result">
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
                 <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
                 <ScalarProperty Name="Position" ColumnName="Position" />
                 <ScalarProperty Name="Country" ColumnName="Country" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="EmailListPartners" TypeName="BetC_CRM_DatabaseModelTest3.EmailListPartners" StoreEntitySet="EmailListPartners">
-            <EndProperty Name="EmailLists">
-              <ScalarProperty Name="EmailListID" ColumnName="EmailList_EmailListID" />
-            </EndProperty>
-            <EndProperty Name="Partners">
-              <ScalarProperty Name="PartnerID" ColumnName="Partner_PartnerID" />
-            </EndProperty>
-          </AssociationSetMapping>
-        </EntityContainerMapping>
+                <ScalarProperty Name="GuID" ColumnName="GuID" />
+                <ScalarProperty Name="DateInserted" ColumnName="DateInserted" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

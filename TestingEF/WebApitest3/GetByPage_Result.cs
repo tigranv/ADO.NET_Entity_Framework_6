@@ -10,24 +10,16 @@
 namespace WebApitest3
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Partner
+    public partial class GetByPage_Result
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Partner()
-        {
-            this.EmailLists = new HashSet<EmailList>();
-        }
-    
-        public int PartnerID { get; set; }
+        public int ContactId { get; set; }
         public string FullName { get; set; }
         public string CompanyName { get; set; }
         public string Position { get; set; }
         public string Country { get; set; }
         public string Email { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EmailList> EmailLists { get; set; }
+        public Nullable<System.Guid> GuID { get; set; }
+        public Nullable<System.DateTime> DateInserted { get; set; }
     }
 }

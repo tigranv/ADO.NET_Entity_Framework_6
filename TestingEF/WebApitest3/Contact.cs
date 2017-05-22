@@ -12,18 +12,24 @@ namespace WebApitest3
     using System;
     using System.Collections.Generic;
     
-    public partial class EmailList
+    public partial class Contact
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public EmailList()
+        public Contact()
         {
-            this.Contacts = new HashSet<Contact>();
+            this.EmailLists = new HashSet<EmailList>();
         }
     
-        public int EmailListID { get; set; }
-        public string EmailListName { get; set; }
+        public int ContactId { get; set; }
+        public string FullName { get; set; }
+        public string CompanyName { get; set; }
+        public string Position { get; set; }
+        public string Country { get; set; }
+        public string Email { get; set; }
+        public Guid GuID { get; set; }
+        public DateTime DateInserted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Contact> Contacts { get; set; }
+        public virtual ICollection<EmailList> EmailLists { get; set; }
     }
 }

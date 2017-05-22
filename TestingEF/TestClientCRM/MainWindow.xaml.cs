@@ -27,9 +27,9 @@ namespace TestClientCRM
     public partial class MainWindow : Window
     {
         private readonly HttpClient _client = new HttpClient();
-        List<Partner> partnersList;
+        List<Contact> partnersList;
         List<EmailList> emailListsList;
-        List<Partner> emailListPartners;
+        List<Contact> emailListPartners;
 
 
         public MainWindow()
@@ -54,7 +54,7 @@ namespace TestClientCRM
                         string responseText = message.Content.ReadAsStringAsync().Result;
 
                         JavaScriptSerializer jss = new JavaScriptSerializer();
-                        partnersList = jss.Deserialize<List<Partner>>(responseText);
+                        partnersList = jss.Deserialize<List<Contact>>(responseText);
 
                         Dispatcher.BeginInvoke(DispatcherPriority.Normal,
                         (Action)(() =>
@@ -68,7 +68,7 @@ namespace TestClientCRM
         private async void MouseClickOnDatagrid(object sender, MouseButtonEventArgs e)
         {
             HttpClient client = new HttpClient();
-            string id =  partnersList[MyGridParters.SelectedIndex].PartnerID.ToString();
+            string id =  partnersList[MyGridParters.SelectedIndex].ContactId.ToString();
             string url = string.Format(@"http://localhost:55256/api/partners?id={0}", Uri.EscapeDataString(id));
 
             await client.GetAsync(url)
@@ -84,7 +84,7 @@ namespace TestClientCRM
                         string responseText = message.Content.ReadAsStringAsync().Result;
 
                         JavaScriptSerializer jss = new JavaScriptSerializer();
-                        Partner person = jss.Deserialize<Partner>(responseText);
+                        Contact person = jss.Deserialize<Contact>(responseText);
 
                         string mailingLists = "";
                         foreach (var item in person.EmailLists)
@@ -106,9 +106,9 @@ namespace TestClientCRM
             if (MyGridParters.SelectedItems.Count != 1) return;
             HttpClient client = new HttpClient();
 
-            Partner p = new Partner()
+            Contact p = new Contact()
             {
-                PartnerID = partnersList[MyGridParters.SelectedIndex].PartnerID,
+                ContactId = partnersList[MyGridParters.SelectedIndex].ContactId,
                 FullName = PartnerNameTextbox.Text,
                 CompanyName = CompanyNameTextbox.Text,
                 Country = CountryNameTextbox.Text,
@@ -125,7 +125,7 @@ namespace TestClientCRM
         {
             HttpClient client = new HttpClient();
 
-            Partner p = new Partner()
+            Contact p = new Contact()
             {
                 FullName = PartnerNameTextbox.Text,
                 CompanyName = CompanyNameTextbox.Text,
@@ -149,7 +149,7 @@ namespace TestClientCRM
             if (MyGridParters.SelectedItems.Count == 1)
             {
                 HttpClient client = new HttpClient();
-                string id = partnersList[MyGridParters.SelectedIndex].PartnerID.ToString();
+                string id = partnersList[MyGridParters.SelectedIndex].ContactId.ToString();
                 string url = string.Format(@"http://localhost:55256/api/partners?id={0}", Uri.EscapeDataString(id));
 
                 client.DeleteAsync(url);
@@ -205,14 +205,14 @@ namespace TestClientCRM
                         JavaScriptSerializer jss = new JavaScriptSerializer();
                         EmailList emailList = jss.Deserialize<EmailList>(responseText);
                         emailListPartners = null;
-                        emailListPartners = emailList.Partners.ToList();
+                        emailListPartners = emailList.Contacts.ToList();
                         
 
 
                         Dispatcher.BeginInvoke(DispatcherPriority.Normal,
                         (Action)(() =>
                         {
-                            emaillistOptionsTextBlock.Text = $"{emailList.EmailListName} - Email List Partners";
+                            emaillistOptionsTextBlock.Text = $"{emailList.EmailListName} - Email List Contacts";
                             MyGridListOptions.ItemsSource = emailListPartners;
                         }));
                     }

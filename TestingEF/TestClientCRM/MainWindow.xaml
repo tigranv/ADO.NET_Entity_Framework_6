@@ -24,10 +24,10 @@
         <Border Margin="3, 5, 3, 0" Grid.ColumnSpan="2" Grid.Row="0" BorderBrush="Black" BorderThickness="2,2,2,0">
             <StackPanel Margin="2" Grid.ColumnSpan="2" Grid.Row="1" Orientation="Horizontal">
                 <Button Name="GetAllPartnersBt" Height="30" Margin="5, 5, 30, 5" Padding="2" Click="GetAllPartnersBt_Click">Get All Partners</Button>
-                <DataGrid Background="Transparent" Name="MyGridParters" Width="715" Height="200" Grid.Row="0" Grid.Column="1" Margin="5" MouseDoubleClick="MouseClickOnDatagrid"></DataGrid>
+                <DataGrid Background="Transparent" Name="MyGridParters" Width="780" Height="200" Grid.Row="0" Grid.Column="1" Margin="5" MouseDoubleClick="MouseClickOnDatagrid"></DataGrid>
                 <Border Margin="2" BorderBrush="Black" BorderThickness="0.5">
                     <StackPanel>
-                        <TextBlock Background="Transparent" Name="PartnerInfo" Width="205" Grid.Row="0" TextWrapping="Wrap" Grid.Column="1" Margin="5" ></TextBlock>
+                        <TextBlock Background="Transparent" Name="PartnerInfo" Width="150" Grid.Row="0" TextWrapping="Wrap" Grid.Column="1" Margin="5" ></TextBlock>
                     </StackPanel>
                 </Border>
             </StackPanel>

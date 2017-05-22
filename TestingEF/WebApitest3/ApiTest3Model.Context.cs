@@ -12,6 +12,8 @@ namespace WebApitest3
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class BetC_CRM_DatabaseEntitiesTest3 : DbContext
     {
@@ -26,6 +28,24 @@ namespace WebApitest3
         }
     
         public virtual DbSet<EmailList> EmailLists { get; set; }
-        public virtual DbSet<Partner> Partners { get; set; }
+        public virtual DbSet<Contact> Contacts { get; set; }
+        public virtual DbSet<Template> Templates { get; set; }
+    
+        public virtual ObjectResult<GetByPage_Result> GetByPage(Nullable<int> startFrom, Nullable<int> numberOfRows, Nullable<bool> flag)
+        {
+            var startFromParameter = startFrom.HasValue ?
+                new ObjectParameter("startFrom", startFrom) :
+                new ObjectParameter("startFrom", typeof(int));
+    
+            var numberOfRowsParameter = numberOfRows.HasValue ?
+                new ObjectParameter("numberOfRows", numberOfRows) :
+                new ObjectParameter("numberOfRows", typeof(int));
+    
+            var flagParameter = flag.HasValue ?
+                new ObjectParameter("flag", flag) :
+                new ObjectParameter("flag", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetByPage_Result>("GetByPage", startFromParameter, numberOfRowsParameter, flagParameter);
+        }
     }
 }

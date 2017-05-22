@@ -6,19 +6,21 @@ using System.Threading.Tasks;
 
 namespace TestClientCRM
 {
-    public class Partner
+    public class Contact
     {
-        public Partner()
+        public Contact()
         {
             this.EmailLists = new HashSet<EmailList>();
         }
 
-        public int PartnerID { get; set; }
+        public int ContactId { get; set; }
         public string FullName { get; set; }
         public string CompanyName { get; set; }
         public string Position { get; set; }
         public string Email { get; set; }
         public string Country { get; set; }
+        public System.Guid GuID { get; set; }
+        public System.DateTime DateInserted { get; set; }
 
         public virtual ICollection<EmailList> EmailLists { get; set; }
     }
@@ -27,12 +29,12 @@ namespace TestClientCRM
     {
         public EmailList()
         {
-            this.Partners = new HashSet<Partner>();
+            this.Contacts = new HashSet<Contact>();
         }
 
         public int EmailListID { get; set; }
         public string EmailListName { get; set; }
 
-        public virtual ICollection<Partner> Partners { get; set; }
+        public virtual ICollection<Contact> Contacts { get; set; }
     }
 }
