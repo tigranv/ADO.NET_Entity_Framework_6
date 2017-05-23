@@ -26,8 +26,8 @@ namespace WebApitest3
         public string Position { get; set; }
         public string Country { get; set; }
         public string Email { get; set; }
-        public Guid GuID { get; set; }
-        public DateTime DateInserted { get; set; }
+        public System.Guid GuID { get; set; }
+        public System.DateTime DateInserted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EmailList> EmailLists { get; set; }

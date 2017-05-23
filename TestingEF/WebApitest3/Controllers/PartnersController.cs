@@ -18,17 +18,17 @@ namespace WebApitest3.Controllers
         private BetC_CRM_DatabaseEntitiesTest3 db = new BetC_CRM_DatabaseEntitiesTest3();
 
         // GET: api/Partners
-        //public List<Contact> GetPartners()
-        //{
-        //    //return db.Contacts;
-        //    //return db.Database.SqlQuery<Contact>("exec [dbo].[GetByPage]", 2, 2, 1).ToList();
-        //    return db.GetByPage(2, 2, true);
-        //}
-
-        public IQueryable<Contact> GetPartners()
+        public IEnumerable<GetByPage_Result> GetPartners()
         {
-            return db.Contacts;
+            //return db.Contacts;
+            //return db.Database.SqlQuery<Contact>("exec [dbo].[GetByPage]", 2, 2, 1).ToList();
+            return db.GetByPage(1, 8, true) as IEnumerable<GetByPage_Result>;
         }
+
+        //public IQueryable<Contact> GetPartners()
+        //{
+        //    return db.Contacts;
+        //}
 
         // GET: api/Partners/5
         [ResponseType(typeof(Contact))]
