@@ -14,7 +14,8 @@ namespace WebApitest3
     using System.Data.Entity.Infrastructure;
     using System.Data.Entity.Core.Objects;
     using System.Linq;
-    
+    using System.Collections.Generic;
+
     public partial class BetC_CRM_DatabaseEntitiesTest3 : DbContext
     {
         public BetC_CRM_DatabaseEntitiesTest3()
@@ -31,7 +32,7 @@ namespace WebApitest3
         public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<Template> Templates { get; set; }
     
-        public virtual ObjectResult<GetByPage_Result> GetByPage(Nullable<int> startFrom, Nullable<int> numberOfRows, Nullable<bool> flag)
+        public virtual List<Contact> GetByPage(Nullable<int> startFrom, Nullable<int> numberOfRows, Nullable<bool> flag)
         {
             var startFromParameter = startFrom.HasValue ?
                 new ObjectParameter("startFrom", startFrom) :
@@ -45,7 +46,7 @@ namespace WebApitest3
                 new ObjectParameter("flag", flag) :
                 new ObjectParameter("flag", typeof(bool));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetByPage_Result>("GetByPage", startFromParameter, numberOfRowsParameter, flagParameter);
+            return Database.SqlQuery<Contact>("GetByPage", startFromParameter, numberOfRowsParameter, flagParameter).ToList<Contact>();
         }
     }
 }

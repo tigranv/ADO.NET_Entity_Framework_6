@@ -18,12 +18,11 @@ namespace WebApitest3.Controllers
         private BetC_CRM_DatabaseEntitiesTest3 db = new BetC_CRM_DatabaseEntitiesTest3();
 
         // GET: api/Partners
-        //public List<GetByPage_Result> GetPartners()
+        //public List<Contact> GetPartners()
         //{
         //    //return db.Contacts;
         //    //return db.Database.SqlQuery<Contact>("exec [dbo].[GetByPage]", 2, 2, 1).ToList();
-        //    return db.GetByPage(2, 2, true).ToList<GetByPage_Result>();
-
+        //    return db.GetByPage(2, 2, true);
         //}
 
         public IQueryable<Contact> GetPartners()
@@ -97,6 +96,8 @@ namespace WebApitest3.Controllers
             {
                 return BadRequest(ModelState);
             }
+            partner.DateInserted = DateTime.UtcNow;
+            partner.GuID = Guid.NewGuid();
             db.Contacts.Add(partner);
             db.SaveChanges();
 
