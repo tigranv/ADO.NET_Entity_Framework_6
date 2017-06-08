@@ -20,125 +20,50 @@ Yerevan
 
 * **[Registration(Adds admin**)](#bookmark=kix.7m7xmrnpfia7)
 
-* Request
-
-* Response
-
 * **[Login (Authenticates the user with the system and gives token**)](#bookmark=kix.y8i3au6fkpwb)
-
-* Request
-
-* Response
 
 **Contacts**** **
 
 * **[Get (returns all contacts from database**)](#bookmark=kix.88gl7uv8nli4)
 
-* Request
-
-* Response
-
 * **[Get By GuId  (returns specific contact and mailing lists of that contact**)](#bookmark=kix.no5hxfwx2ncc)
-
-* Request
-
-* Response
 
 * **[Put  (updates specific contact by GuId**)](#bookmark=kix.87symi1pt30s)
 
-* Request
-
-* Response
-
 * **[Post (creates new contact**)](#bookmark=kix.uk0zmppuc007)
-
-* Request
-
-* Response
 
 * **[Delete (deletes contact by GuId**)](#bookmark=kix.5o73r2ikxxbm)
 
-* Request
-
-* Response
-
 * **[Delete (deletes contact by GuId list**)](#bookmark=kix.bmil1mrda9te)
-
-* Request
-
-* Response
 
 * **[Post (uploads contacts from Excel or CSV file to database**)](#bookmark=kix.262tylozxcap)
 
-* Request
-
-* Response
-
 * **Post (returns contacts by paiges filtered and ordered by specific fields)**
-
-* Request
-
-* Response
 
 **Email Lists**** **
 
 * **[Get (returns all email lists from database**)](#bookmark=kix.r5ci25iwn2rs)
 
-* Request
-
-* Response
-
 * **[Get By Id  (returns specific email list and contacts of that list**)](#bookmark=kix.smq51v4rbm8l)
-
-* Request
-
-* Response
 
 * **[Put  (updates specific email list contacts**)](#bookmark=kix.ex7n35k1157i)
 
-* Request
-
-* Response
-
 * **[Put  (updates specific email list**)](#bookmark=kix.r9iddduloj27)
-
-* Request
-
-* Response
 
 * **[Post (creates new email list**)](#bookmark=kix.vu1nyb4xm30q)
 
-* Request
-
-* Response
-
 * **[Delete (deletes email list by Id**)](#bookmark=kix.j2vs7yn0mpmx)
-
-* Request
-
-* Response
 
 **Send Email**
 
 * **[Post (sends emails to contacts by contacts guid list, and template id**)](#bookmark=kix.h0g1lcm7nsa)
 
-* Request
-
-* Response
-
 * **[Post (sends emails to contacts by email list id and template id**)](#bookmark=kix.urpjjqugmy8r)
-
-* Request
-
-* Response
 
 **Email Templates**
 
 * **[Get(returns all templates from database**)](#bookmark=kix.a42gazhygdq9)
 
-* Request
-
-* Response
 
 ## **1 Registration/Authentication**
 
